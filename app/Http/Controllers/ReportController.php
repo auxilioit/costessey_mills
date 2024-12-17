@@ -21,7 +21,7 @@ class ReportController extends Controller
 
             //Update status, based on latested reports in last 24 hours
             $closed = $location->reports->where('type', 'closed')->where('created_at', '>', Carbon::now()->subHours(24))->count();
-            $flooded = $location->reports->where('type', 'closed')->where('created_at', '>', Carbon::now()->subHours(24))->count();
+            $flooded = $location->reports->where('type', 'flooded')->where('created_at', '>', Carbon::now()->subHours(24))->count();
             $open = $location->reports->where('type', 'open')->where('created_at', '>', Carbon::now()->subHours(24))->count();
 
             $largest = max($closed, $flooded, $open);
