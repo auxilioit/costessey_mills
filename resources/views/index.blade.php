@@ -16,9 +16,9 @@
 <div class="container">
     <div class="row counters justify-content-center">
         @foreach($locations as $location)
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-5">
             <div class="card">
-                <h5 class="card-header @if($location->status == 'open') text-bg-success @elseif($location->status == 'flooded') text-bg-primary @elseif($location->status == 'closed') text-bg-danger @endif">Costessey Mill - <span class="text-uppercase">{{$location->status}}</span></h5>
+                <h5 class="card-header @if($location->status == 'open') text-bg-success @elseif($location->status == 'flooded') text-bg-primary @elseif($location->status == 'closed') text-bg-danger @endif">{{$location->name}} - <span class="text-uppercase">{{$location->status}}</span></h5>
                 <div class="card-body">
                     {!! $location->embedded_map !!}
                 </div>
@@ -27,9 +27,10 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <h3>Current Stats: </h3>
-                                <p>Reported Closed <i class="fa-solid fa-ban"></i> (in last 24 Hours): {{$location->reports->where('type', 'closed')->where('created_at', '>', Carbon\Carbon::now()->subHours(24))->count()}}</p>
-                                <p>Reported Flooded <i class="fa-solid fa-house-flood-water"></i> (in last 24 Hours): {{$location->reports->where('type', 'flooded')->where('created_at', '>', Carbon\Carbon::now()->subHours(24))->count()}}</p>
-                                <p>Reported Open (in last 24 Hours): {{$location->reports->where('type', 'open')->where('created_at', '>', Carbon\Carbon::now()->subHours(24))->count()}}</p>
+                                <p>Closed <i class="fa-solid fa-ban"></i> : {{$location->reports->where('type', 'closed')->where('created_at', '>', Carbon\Carbon::now()->subHours(24))->count()}}</p>
+                                <p>Flooded <i class="fa-solid fa-house-flood-water"></i> : {{$location->reports->where('type', 'flooded')->where('created_at', '>', Carbon\Carbon::now()->subHours(24))->count()}}</p>
+                                <p>Open: {{$location->reports->where('type', 'open')->where('created_at', '>', Carbon\Carbon::now()->subHours(24))->count()}}</p>
+                                <p><small>(in last 24 Hours)</small></p>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <h3>Report: </h3>
