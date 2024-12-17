@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schedule;
 
-App\Console\Commands\UpdateLocationStatus;
+use App\Console\Commands\UpdateLocationStatus;
 
 Schedule::command('locations:update_status')->hourly();
