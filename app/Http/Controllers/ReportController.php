@@ -35,7 +35,7 @@ class ReportController extends Controller
                 $location->save();
             }
             if($largest == $open){
-                $location->status = 'closed';
+                $location->status = 'open';
                 $location->save();
             }
 
